@@ -10,7 +10,7 @@ const Trash = ({ activeTheme }) => {
   const fetchTrashNotes = async () => {
     try {
       setLoading(true);
-      const url = 'https://google-keep-backend-server.onrender.com/trash';
+      const url = 'https://google-keep-clone-5vpu.onrender.com/trash';
       const options = {
         method: 'GET',
         headers: {
@@ -33,7 +33,7 @@ const Trash = ({ activeTheme }) => {
 
   const onClickDeleteNoteTrash = async (noteId) => {
     try {
-      const url = 'https://google-keep-backend-server.onrender.com/trash';
+      const url = 'https://google-keep-clone-5vpu.onrender.com/trash';
       const options = {
         method: 'DELETE',
         headers: {
@@ -51,7 +51,7 @@ const Trash = ({ activeTheme }) => {
 
   const onClickRecoverNote = async (noteId) => {
     try {
-      const url = 'https://google-keep-backend-server.onrender.com/notes';
+      const url = 'https://google-keep-clone-5vpu.onrender.com/notes';
       const options = {
         method: 'PUT',
         headers: {

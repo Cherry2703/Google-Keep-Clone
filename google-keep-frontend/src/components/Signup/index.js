@@ -23,7 +23,7 @@ const Signup = () => {
     e.preventDefault();
 
     
-    const url = 'https://google-keep-backend-server.onrender.com/sign-up';
+    const url = 'https://google-keep-clone-5vpu.onrender.com/sign-up';
     const options = {
       method: 'POST',
       headers: {

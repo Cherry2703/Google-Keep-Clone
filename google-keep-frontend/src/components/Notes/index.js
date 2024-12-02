@@ -29,7 +29,7 @@ const Notes = ({searchInput,activeTheme}) => {
     const jwtToken = Cookies.get("jwtToken");
     try {
       const response = await fetch(
-        "https://google-keep-backend-server.onrender.com/notes",
+        "https://google-keep-clone-5vpu.onrender.com/notes",
         {
           method: "GET",
           headers: {
@@ -67,7 +67,7 @@ const Notes = ({searchInput,activeTheme}) => {
     const jwtToken = Cookies.get("jwtToken");
     try {
       const response = await fetch(
-        "https://google-keep-backend-server.onrender.com/notes",
+        "https://google-keep-clone-5vpu.onrender.com/notes",
         {
           method: "POST",
           headers: {
@@ -96,7 +96,7 @@ const Notes = ({searchInput,activeTheme}) => {
   const onClickDeleteBtn = async (noteId) => {
     try {
       const response = await fetch(
-        `https://google-keep-backend-server.onrender.com/notes`,
+        `https://google-keep-clone-5vpu.onrender.com/notes`,
         {
           method: "PUT",
           headers: {
@@ -122,7 +122,7 @@ const Notes = ({searchInput,activeTheme}) => {
   const onClickArchiveBtn = async (noteId) => {
     try {
       const response = await fetch(
-        `https://google-keep-backend-server.onrender.com/notes`,
+        `https://google-keep-clone-5vpu.onrender.com/notes`,
         {
           method: "PUT",
           headers: {
@@ -158,7 +158,7 @@ const Notes = ({searchInput,activeTheme}) => {
     const jwtToken = Cookies.get("jwtToken");
     try {
       const response = await fetch(
-        `https://google-keep-backend-server.onrender.com/notes`,
+        `https://google-keep-clone-5vpu.onrender.com/notes`,
         {
           method: "PUT",
           headers: {
