@@ -6,7 +6,7 @@ const sqlite3 = require('sqlite3');
 const path = require('path');
 const dbPath = path.join(__dirname, './google-keep-database.db');
 const cors = require('cors');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken');
 
