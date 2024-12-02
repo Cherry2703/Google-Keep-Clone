@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import Cookies from 'js-cookie'
+
 import './index.css';
 
 const Signup = () => {
@@ -10,6 +13,13 @@ const Signup = () => {
   });
   const [redirectMessage, setRedirectMessage] = useState(''); // State for redirect message
   const navigate = useNavigate(); // Hook for navigation
+
+  useEffect(()=>{
+    const token = Cookies.get('jwtToken')
+    if(token!== undefined){
+      navigate('/')
+    }
+  },[navigate])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

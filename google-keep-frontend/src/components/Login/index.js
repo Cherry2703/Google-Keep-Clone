@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'
 
@@ -9,6 +9,13 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [redirectMessage, setRedirectMessage] = useState(''); 
   const navigate = useNavigate(); 
+
+  useEffect(()=>{
+    const token = Cookies.get('jwtToken')
+    if(token!== undefined){
+      navigate('/')
+    }
+  },[navigate])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
