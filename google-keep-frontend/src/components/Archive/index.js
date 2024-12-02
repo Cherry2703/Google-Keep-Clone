@@ -11,7 +11,7 @@ const Archive = () => {
   const fetchArchiveNotes = async () => {
     try {
       setLoading(true);
-      const url = 'https://google-keep-clone-5vpu.onrender.com/archieve';
+      const url = 'https://google-keep-clone-1.onrender.com/archieve';
       const options = {
         method: 'GET',
         headers: {
@@ -34,7 +34,7 @@ const Archive = () => {
 
   const onClickUnArchiveBtn = async (noteId) => {
     try {
-      const url = 'https://google-keep-clone-5vpu.onrender.com/notes';
+      const url = 'https://google-keep-clone-1.onrender.com/notes';
       const options = {
         method: 'PUT',
         headers: {
