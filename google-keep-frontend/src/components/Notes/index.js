@@ -1,6 +1,6 @@
+
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { IoArchiveOutline } from "react-icons/io5";
@@ -8,22 +8,22 @@ import { FaRegBell } from "react-icons/fa";
 
 import "./index.css";
 
-const Notes = ({searchInput,activeTheme}) => {
+const Notes = ({ searchInput, activeTheme }) => {
   const [notesList, setNotesList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [color, setColor] = useState("");
   const [content, setContent] = useState("");
   const [error, setError] = useState(null);
-  
   const [showEditPopup, setShowEditPopup] = useState(false);
+  const [editNotes, setEditNotes] = useState({
+    title: '',
+    content: '',
+    color: '',
+    noteId: ''
+  });
 
-  const [editNotes,setEditNotes] = useState({
-    title:'',content:'',color:'',noteId:''
-  })
-
-
-    const filteredNotes = notesList.filter((each)=>each.title.toLowerCase().includes(searchInput.toLowerCase()))
+  const filteredNotes = notesList.filter((each) => each.title.toLowerCase().includes(searchInput.toLowerCase()));
 
   const fetchNotes = async () => {
     const jwtToken = Cookies.get("jwtToken");
@@ -145,13 +145,9 @@ const Notes = ({searchInput,activeTheme}) => {
     }
   };
 
-
-
   const onClickEditBtn = (note) => {
-    console.log(note);
-    
     setShowEditPopup(true);
-    setEditNotes({noteId:note})
+    setEditNotes({ noteId: note.note_id, title: note.title, content: note.content, color: note.color });
   };
 
   const onClickUpdateBtn = async () => {
@@ -167,9 +163,9 @@ const Notes = ({searchInput,activeTheme}) => {
           },
           body: JSON.stringify({
             noteId: editNotes.noteId,
-            title:editNotes.title,
-            content:editNotes.content,
-            color:editNotes.color,
+            title: editNotes.title,
+            content: editNotes.content,
+            color: editNotes.color,
           }),
         }
       );
@@ -187,16 +183,9 @@ const Notes = ({searchInput,activeTheme}) => {
     }
   };
 
-
   return (
-    <div
-      className={`content-to-show-container ${
-        notesList.length === 0 && !loading ? "no-notes" : ""
-      } ` }
-    >
-
-
-{showEditPopup && (
+    <div className={`content-to-show-container ${notesList.length === 0 && !loading ? "no-notes" : ""}`}>
+      {showEditPopup && (
         <div className="edit-popup-overlay">
           <div className="edit-popup">
             <h3>Edit Note</h3>
@@ -205,20 +194,14 @@ const Notes = ({searchInput,activeTheme}) => {
               placeholder="Enter Title..."
               className="edit-title-input"
               value={editNotes.title}
-              onChange={(e) =>
-                setEditNotes((prev) => ({ ...prev, title: e.target.value }))
-              }
-              
-
+              onChange={(e) => setEditNotes((prev) => ({ ...prev, title: e.target.value }))}
             />
             <textarea
               rows={3}
               placeholder="Enter Description..."
               className="edit-description-input"
               value={editNotes.content}
-              onChange={(e) =>
-                setEditNotes((prev) => ({ ...prev, content: e.target.value }))
-              }
+              onChange={(e) => setEditNotes((prev) => ({ ...prev, content: e.target.value }))}
             />
             <div className="color-picker-container">
               <label htmlFor="color-picker">Pick Color:</label>
@@ -226,63 +209,57 @@ const Notes = ({searchInput,activeTheme}) => {
                 id="color-picker"
                 type="color"
                 value={editNotes.color}
-                onChange={(e) =>
-                  setEditNotes((prev) => ({ ...prev, color: e.target.value }))
-                }
+                onChange={(e) => setEditNotes((prev) => ({ ...prev, color: e.target.value }))}
               />
             </div>
             <button className="update-btn" onClick={onClickUpdateBtn}>
               Update Note
             </button>
-            <button
-              className="cancel-btn"
-              onClick={() => setShowEditPopup(false)}
-            >
+            <button className="cancel-btn" onClick={() => setShowEditPopup(false)}>
               Cancel
             </button>
           </div>
         </div>
       )}
-        <div className="input-container">
+      <div className="input-container">
+        <input
+          type="text"
+          placeholder="Enter Title..."
+          className="input-title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <textarea
+          rows={1}
+          cols={5}
+          placeholder="Enter Description..."
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          className="description-input"
+        />
+        <div className="color-picker-container">
+          <label htmlFor="color-picker">Pick Color:</label>
           <input
-            type="text"
-            placeholder="Enter Title..."
-            className="input-title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            id="color-picker"
+            type="color"
+            className="color-picker"
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
           />
-          <textarea
-            rows={1}
-            cols={5}
-            placeholder="Enter Description..."
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            className="description-input"
-          />
-          <div className="color-picker-container">
-              <label htmlFor="color-picker">Pick Color:</label>
-              <input
-                id="color-picker"
-                type="color"
-                className="color-picker"
-                value={color}
-                onChange={(e) => setColor(e.target.value)}
-              />
-            </div>
-          <div className="color-and-btn">
-            <button type="button" className="add-btn" onClick={onClickAddBtn}>
-              Add Note
-            </button>
-          </div>
         </div>
-
+        <div className="color-and-btn">
+          <button type="button" className="add-btn" onClick={onClickAddBtn}>
+            Add Note
+          </button>
+        </div>
+      </div>
 
       {loading ? (
         <div className="loading-indicator">Loading...</div>
       ) : error ? (
         <div className="error-message">{error}</div>
       ) : notesList.length > 0 ? (
-        <div className={`notes-container ${activeTheme ? 'light' : 'dark'}`} >
+        <div className={`notes-container ${activeTheme ? 'light' : 'dark'}`}>
           {filteredNotes.map((note) => (
             <div
               key={note.note_id}
@@ -295,19 +272,13 @@ const Notes = ({searchInput,activeTheme}) => {
                 <button title="Set Reminder">
                   <FaRegBell />
                 </button>
-                <button
-                  title="Archive Note"
-                  onClick={() => onClickArchiveBtn(note.note_id)}
-                >
+                <button title="Archive Note" onClick={() => onClickArchiveBtn(note.note_id)}>
                   <IoArchiveOutline />
                 </button>
-                <button title="Edit Note" onClick={()=>onClickEditBtn(note.note_id)}>
+                <button title="Edit Note" onClick={() => onClickEditBtn(note)}>
                   <CiEdit />
                 </button>
-                <button
-                  title="Delete Note"
-                  onClick={() => onClickDeleteBtn(note.note_id)}
-                >
+                <button title="Delete Note" onClick={() => onClickDeleteBtn(note.note_id)}>
                   <MdDelete />
                 </button>
               </div>
