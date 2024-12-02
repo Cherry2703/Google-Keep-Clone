@@ -10,6 +10,9 @@ const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken');
 
+require('dotenv').config();
+
+
 app.use(express.json());
 app.use(cors());
 
@@ -64,7 +67,7 @@ app.post('/sign-up/', async (request, response) => {
     response.status(500).send({ message: `Internal Server Error: ${error.message}` });
   }
 });
-
+ 
 // Login path for user login
 app.post('/login/', async (request, response) => {
   try {
@@ -91,6 +94,9 @@ app.post('/login/', async (request, response) => {
 // Middleware to authenticate JWT tokens
 const authenticateJwtToken = (request, response, next) => {
   const authHeader = request.headers['authorization'];
+  console.log('Authorization header:', authHeader);
+  console.log("JWT_SECRET:", process.env.JWT_SECRET);
+ 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return response.status(401).json({ message: 'Unauthorized Access: Token not provided' });
   }
@@ -163,7 +169,7 @@ app.get('/trash/', authenticateJwtToken, async (request, response) => {
     response.send(notes);
   } catch (error) {
     response.status(500).send({ message: `Internal Server Error: ${error.message}` });
-  }
+  } 
 });
 
 app.get('/archieve/', authenticateJwtToken, async (request, response) => {
