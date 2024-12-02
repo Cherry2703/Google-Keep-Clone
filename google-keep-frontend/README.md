@@ -1,70 +1,97 @@
-# Getting Started with Create React App
+### Google Keep Clone - Frontend Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Overview
+This project is a frontend implementation of a Google Keep-like application, built with React.js. It offers features similar to Google Keep, including note management with options to create, view, update, archive, and delete notes. This project is designed to work seamlessly with a backend API for user authentication and data management.
 
-In the project directory, you can run:
 
-### `npm start`
+# Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## User Authentication
 
-### `npm test`
+Users can sign up and log in securely.
+JWT tokens are used for authenticating user sessions.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Notes Management
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Create Notes: Users can create new notes with a title and content.
+View Notes: Display all notes in a user-friendly interface.
+Update Notes: Edit the content, title, and color of existing notes.
+Delete Notes: Permanently remove notes or move them to trash.
+Archive Notes: Archive notes to keep them out of sight but accessible.
+Trash and Recovery
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Recover deleted notes from the trash or permanently delete them.
+Responsive Design
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The application is fully responsive and optimized for desktop, tablet, and mobile views.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Technologies Used
+React.js: The main library used for building the user interface.
+CSS: For styling the components and ensuring a modern, user-friendly design.
+JWT: For handling secure user authentication.
+Axios: For making HTTP requests to the backend API.
+React Hooks: Used for state management and lifecycle methods.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Installation
+Prerequisites
+Ensure you have the following installed:
 
-## Learn More
+Node.js (v14.x or higher)
+npm or Yarn
+Steps
+# Clone the repository:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+git clone https://github.com/Cherry2703/google-keep-clone.git
+Navigate into the project directory:
 
-### Code Splitting
+cd google-keep-clone
+Install dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+or
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+yarn install
+Start the development server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+npm start
+or
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+yarn start
+Visit http://localhost:3000 in your browser to view the app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### API Integration
+This frontend interacts with a backend API for user authentication and note management. The API URL used for interaction is:
+
+Backend API Base URL: https://google-keep-backend-server.onrender.com
+Ensure the backend server is running and accessible for full functionality.
+
+### Project Structure
+src/components: Contains React components for various UI sections (e.g., Navbar, Notes, Sidebar).
+src/hooks: Custom React hooks for managing state and side effects.
+src/utils: Utility functions and helpers.
+src/styles: CSS files for styling the application.
+
+
+App.js: The main React component that sets up routing and component rendering.
+Screenshots
+Add screenshots of the app to showcase the UI:
+
+
+
+### Future Improvements
+Offline Support: Implement service workers for offline functionality.
+Enhanced Security: Add more robust error handling and security features.
+Search Functionality: Allow users to search through their notes.
